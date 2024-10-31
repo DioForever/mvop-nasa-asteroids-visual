@@ -2,9 +2,9 @@
 
 ## Softwarové požadavky
 
-Verze 1
-Autor: Daniel Vaško
-Datum: 31.10.
+- Verze 1
+- Autor: Daniel Vaško
+- Datum: 31.10.
 
 <div style="page-break-after: always;"></div>
 
