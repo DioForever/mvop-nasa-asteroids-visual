@@ -1,5 +1,13 @@
 # Nasa Asteroid Visual
 
+## Softwarové požadavky
+
+Verze 1
+Autor: Daniel Vaško
+Datum: 31.10.
+
+<div style="page-break-after: always;"></div>
+
 ## Obsah
 
 1. [Úvod](#1-úvod)
@@ -34,21 +42,20 @@
    5.3 [Spolehlivost](#53-spolehlivost)  
    5.4 [Projektová dokumentace](#54-projektová-dokumentace)  
 
+<div style="page-break-after: always;"></div>
+
 ## Historie dokumentu
 
 | Verze | Autor          | Komentář                          |
 |-------|----------------|-----------------------------------|
 | 1     | Vasko Daniel    | První verze dokumentu            |
+| 2     | Vasko Daniel    | Přidání první stránky, 4.3, 4.4 a oprava 5.1|
 
 ## 1. Úvod
 
 ### 1.1 Účel
 
 Zobrazit vesmírné tělesa ve 2D zobrazení z daného datumu.
-
-### 1.2 Konvence dokumentu
-
-Exe soubor v jazyku C#.
 
 ### 1.3 Cílová skupina
 
@@ -62,7 +69,7 @@ Mail: <vaskodaniel1@gmail.com>
 
 ### 2.1 Produkt
 
-Produkt bude vyvíjen v jazyku C# a bude spouštěn jako .exe soubor.
+Produkt bude vyvíjen v jazyku C# a bude spouštěn jako mobilní aplikace.
 
 ### 2.2 Funkce
 
@@ -90,23 +97,34 @@ Předpoklad, že si uživatel vytvoří účet na <https://api.nasa.gov> a použ
 
 Mobilní aplikace, kde na jedné stránce bude moct filtrovat a ihned zobrazit asteroidy.
 
-## 4. Vlastnosti systému
+## 4. Funkční požadavky
 
 ### 4.1 Zobrazení asteroidů
 
+- Popis: Zobrazení asteroidů s **intensitou barvy** podle jejich "absolute_magnitude_h" vlastnosti. **Červené ohraničení** pokud je asteroid potenciálně hazardní podle vlastnosti "is_potentially_hazardous_asteroid".
 - Důležitost: **HIGH**
-- Zobrazení asteroidů s **intensitou barvy** podle jejich "absolute_magnitude_h" vlastnosti. **Červené ohraničení** pokud je asteroid potenciálně hazardní podle vlastnosti "is_potentially_hazardous_asteroid".
 
 ### 4.2 Filtrování asteroidů
 
+- Popis: Filtrování asteroidů podle jejich vlastností jako je velikost, nebezpečnost.
 - Důležitost: **HIGH**
-- Filtrování asteroidů podle jejich vlastností jako je velikost, nebezpečnost.
+
+### 4.3 Zadání API tokenu
+
+- Popis: Přidání API tokenu pro získání dat z <https://api.nasa.gov>.
+- Důležitost: **HIGH**
+
+## 4.4. Offline režim
+
+- Popis: V případě, že se uživatel pokusí udělat něco co vyžaduje přístup k internetu a aplikace nemá přístup k internetu dostane uživatel upozornění, že aplikace bez internetu nemůže fungovat. Toto upozornění bude možné zavřít.
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Nefunkční požadavky
 
 ### 5.1 Výkonnost
 
-- Výkonnost této aplikace záleží na rychlosti odpovědi API, tudíž nelze specifikovat požadovanou rychlost aplikace.
+- Výkonnost této aplikace záleží na rychlosti odpovědi API, tudíž specifikujeme požadovanou rychlost aplikace bez počítání odpovědi API a to tedy až 10ms za každý vykreslovaný objekt se základem 1s.
 
 ### 5.2 Bezpečnost
 
