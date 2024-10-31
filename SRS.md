@@ -11,12 +11,15 @@
 1. [Úvod](#1-Úvod)
 
    1.1. [Účel](#11-Účel)
+
    1.2. [Cílová skupina](#13-Cílová-skupina)
+
    1.3. [Kontakty](#14-Kontakty)
 
 2. [Popis](#2-Popis)
 
    2.1. [Produkt](#21-Produkt)
+
    2.2. [Funkce](#22-Funkce)
    2.3. [Uživatelské skupiny](#23-Uživatelské-skupiny)
    2.4. [Provozní prostředí](#24-Provozní-prostředí)
