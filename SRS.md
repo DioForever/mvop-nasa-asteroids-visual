@@ -7,7 +7,6 @@
 <div style="page-break-after: always;"></div>
 
 ## Obsah
-|
 1. [Úvod](#1-Úvod)
 
    1.1. [Účel](#11-Účel)
