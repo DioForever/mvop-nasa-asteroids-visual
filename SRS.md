@@ -10,37 +10,30 @@
 
 ## Obsah
 
-1. [Úvod](#1-úvod)
+1. [Úvod](#1-Úvod)
+   1.1. [Účel](#11-Účel)
+   1.2. [Cílová skupina](#13-Cílová-skupina)
+   1.3. [Kontakty](#14-Kontakty)
+2. [Popis](#2-Popis)
+   2.1. [Produkt](#21-Produkt)
+   2.2. [Funkce](#22-Funkce)
+   2.3. [Uživatelské skupiny](#23-Uživatelské-skupiny)
+   2.4. [Provozní prostředí](#24-Provozní-prostředí)
+   2.5. [Uživatelské prostředí](#25-Uživatelské-prostředí)
+   2.6. [Předpoklady a závislosti](#26-Předpoklady-a-závislosti)
+3. [Požadavky na rozhraní](#3-Požadavky-na-rozhraní)
+   3.1. [Uživatelské rozhraní](#31-Uživatelské-rozhraní)
+4. [Funkční požadavky](#4-Funkční-požadavky)
+   4.1. [Zobrazení asteroidů](#41-Zobrazení-asteroidů)
+   4.2. [Filtrování asteroidů](#42-Filtrování-asteroidů)
+   4.3. [Zadání API tokenu](#43-Zadání-API-tokenu)
+   4.4. [Offline režim](#44-Offline-režim)
+5. [Nefunkční požadavky](#5-Nefunkční-požadavky)
+   5.1. [Výkonnost](#51-Výkonnost)
+   5.2. [Bezpečnost](#52-Bezpečnost)
+   5.3. [Spolehlivost](#53-Spolehlivost)
+   5.4. [Projektová dokumentace](#54-Projektová-dokumentace)
 
-   1.1 [Účel](#11-účel)  
-   1.2 [Konvence dokumentu](#12-konvence-dokumentu)  
-   1.3 [Cílová skupina](#13-cílová-skupina)  
-   1.4 [Kontakty](#14-kontakty)  
-
-2. [Popis](#2-popis)
-
-   2.1 [Produkt](#21-produkt)  
-   2.2 [Funkce](#22-funkce)  
-   2.3 [Uživatelské skupiny](#23-uživatelské-skupiny)  
-   2.4 [Provozní prostředí](#24-provozní-prostředí)  
-   2.5 [Uživatelské prostředí](#25-uživatelské-prostředí)  
-   2.6 [Předpoklady a závislosti](#26-předpoklady-a-závislosti)  
-
-3. [Požadavky na rozhraní](#3-požadavky-na-rozhraní)
-
-   3.1 [Uživatelské rozhraní](#31-uživatelské-rozhraní)
-
-4. [Vlastnosti systému](#4-vlastnosti-systému)
-
-   4.1 [Zobrazení asteroidů](#41-zobrazení-asteroidů)  
-   4.2 [Filtrování asteroidů](#42-filtrování-asteroidů)  
-
-5. [Nefunkční požadavky](#5-nefunkční-požadavky)
-
-   5.1 [Výkonnost](#51-výkonnost)  
-   5.2 [Bezpečnost](#52-bezpečnost)  
-   5.3 [Spolehlivost](#53-spolehlivost)  
-   5.4 [Projektová dokumentace](#54-projektová-dokumentace)  
 
 <div style="page-break-after: always;"></div>
 
