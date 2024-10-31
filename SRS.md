@@ -21,9 +21,13 @@
    2.1. [Produkt](#21-Produkt)
 
    2.2. [Funkce](#22-Funkce)
+
    2.3. [Uživatelské skupiny](#23-Uživatelské-skupiny)
+
    2.4. [Provozní prostředí](#24-Provozní-prostředí)
+
    2.5. [Uživatelské prostředí](#25-Uživatelské-prostředí)
+
    2.6. [Předpoklady a závislosti](#26-Předpoklady-a-závislosti)
 
 3. [Požadavky na rozhraní](#3-Požadavky-na-rozhraní)
@@ -33,15 +37,21 @@
 4. [Funkční požadavky](#4-Funkční-požadavky)
 
    4.1. [Zobrazení asteroidů](#41-Zobrazení-asteroidů)
+
    4.2. [Filtrování asteroidů](#42-Filtrování-asteroidů)
+
    4.3. [Zadání API tokenu](#43-Zadání-API-tokenu)
+
    4.4. [Offline režim](#44-Offline-režim)
 
 5. [Nefunkční požadavky](#5-Nefunkční-požadavky)
 
    5.1. [Výkonnost](#51-Výkonnost)
+
    5.2. [Bezpečnost](#52-Bezpečnost)
+
    5.3. [Spolehlivost](#53-Spolehlivost)
+
    5.4. [Projektová dokumentace](#54-Projektová-dokumentace)
 
 <div style="page-break-after: always;"></div>
