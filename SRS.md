@@ -114,9 +114,10 @@ Mobilní aplikace, kde na jedné stránce bude moct filtrovat a ihned zobrazit a
 - Popis: Přidání API tokenu pro získání dat z <https://api.nasa.gov>.
 - Důležitost: **HIGH**
 
-## 4.4. Offline režim
+### 4.4. Offline režim
 
 - Popis: V případě, že se uživatel pokusí udělat něco co vyžaduje přístup k internetu a aplikace nemá přístup k internetu dostane uživatel upozornění, že aplikace bez internetu nemůže fungovat. Toto upozornění bude možné zavřít.
+- Důležitost: **MEDIUM**
 
 <div style="page-break-after: always;"></div>
 
