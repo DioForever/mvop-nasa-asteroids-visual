@@ -1,8 +1,6 @@
-# Nasa Asteroid Visual
+# Nasa Asteroid Visual - Softwarové požadavky
 
-## Softwarové požadavky
-
-- Verze 1
+- Verze 2
 - Autor: Daniel Vaško
 - Datum: 31.10.
 
@@ -39,10 +37,10 @@
 
 ## Historie dokumentu
 
-| Verze | Autor          | Komentář                          |
-|-------|----------------|-----------------------------------|
-| 1     | Vasko Daniel    | První verze dokumentu            |
-| 2     | Vasko Daniel    | Přidání první stránky, 4.3, 4.4 a oprava 5.1|
+| Verze | Datum | Autor          | Komentář                          |
+|-------|-------|--------|-----------------------------------|
+| 1     | 22.10. |Vasko Daniel    | První verze dokumentu            |
+| 2     | 31.10. |Vasko Daniel    | Přidání první stránky, 4.3, 4.4 a oprava 5.1|
 
 ## 1. Úvod
 
