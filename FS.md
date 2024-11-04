@@ -97,19 +97,23 @@ Mail: <vaskodaniel1@gmail.com>
 ### 3.1 Hlavní stránka
 
 - Při prvním otevření bez uloženého API klíče bude vypadat stránka takto.
+
 ![alt text](image-3.png)
 
 ### 3.2 Získávání dat asteroidů
 
 - Při prvním otevření bez uloženého API klíče bude vypadat stránka takto.
+
 ![alt text](image-2.png)
 
 ### 3.3 Zobrazení asteroidů
 
 - Po vyplnění všech vyžadovaných polí, kliknutí na zobrazení a vyčkání bude aplikace vypadat takto.
+
 ![alt text](image-4.png)
 
 ### 3.4 Upozornění na chybu
 
 - V případě, že nastane chyba zobrazí se uživateli takovéto upozornění, kde text nahoře bude titulek, níže pod tím menším písmem popis a dále tlačítko pro odkliknutí.
+
 ![alt text](image.png)
