@@ -19,7 +19,7 @@
 
     2.1. [Zadání a uložení API klíče](#21-Zadání-a-uložení-API-klíče)
 
-    2.2. [Zadání datumů](#22-Zadání-datumů)
+    2.2. [Zadání datumu](#22-Zadání-datumu)
 
     2.3. [Filtrování nebezpečných asteroidů](#23-Filtrování-nebezpečných-asteroidů)
 
@@ -43,8 +43,8 @@
 
 | Verze | Datum | Autor          | Komentář                          |
 |-------|-------|--------|-----------------------------------|
-| 1     | 4.11. |Vasko Daniel    | První verze dokumentu            |
-
+| 1     | 4.11. |Vaško Daniel    | První verze dokumentu            |
+| 1.1     | 12.11. |Vaško Daniel    |Změna 2.2 rozsahu datumů na datum|
 
 ## 1. Úvod
 
@@ -65,7 +65,7 @@ Mail: <vaskodaniel1@gmail.com>
 ### 2.1 Zadání a uložení API klíče
 - Uživatel vloží svůj NASA API KEY a klikne SAVE, tím se jeho klíč uloží.
 
-### 2.2 Zadání datumů
+### 2.2 Zadání datumu
 - Uživatel vloží datumy ve formátu "Měsíc/Den/Rok" a stane se jedna z 3 věcí:
 1. Bude-li datum validní, okraj bude zelený
 2. Bude-li datum nevalidní, okraj bude červený
@@ -98,22 +98,22 @@ Mail: <vaskodaniel1@gmail.com>
 
 - Při prvním otevření bez uloženého API klíče bude vypadat stránka takto.
 
-![alt text](image-3.png)
+![alt text](image-1.png)
 
 ### 3.2 Získávání dat asteroidů
 
 - Při prvním otevření bez uloženého API klíče bude vypadat stránka takto.
 
-![alt text](image-2.png)
+![alt text](image-5.png)
 
 ### 3.3 Zobrazení asteroidů
 
 - Po vyplnění všech vyžadovaných polí, kliknutí na zobrazení a vyčkání bude aplikace vypadat takto.
 
-![alt text](image-4.png)
+![alt text](image-6.png)
 
 ### 3.4 Upozornění na chybu
 
 - V případě, že nastane chyba zobrazí se uživateli takovéto upozornění, kde text nahoře bude titulek, níže pod tím menším písmem popis a dále tlačítko pro odkliknutí.
 
-![alt text](image.png)
+![alt text](image-7.png)
