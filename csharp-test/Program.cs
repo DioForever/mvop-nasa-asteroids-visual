@@ -18,7 +18,7 @@ class AsteroidVisualization
 
     static async Task Main(string[] args)
     {
-        string date = args.Length > 0 ? args[0] : "2015-09-07"; // Default date: 2015-09-07
+        string date = args.Length > 0 ? args[0] : "2001-1-30"; // Default date: 2015-09-07
         await GetAsteroidsAndVisualize(date);
     }
 
@@ -39,42 +39,45 @@ class AsteroidVisualization
         {
             using (var graphics = Graphics.FromImage(bitmap))
             {
-            graphics.Clear(Color.White);
+                graphics.Clear(Color.Black);
 
-            // Draw the solar system
-            SolarSystem.DrawSun(graphics, bitmap.Width, bitmap.Height);
-            SolarSystem.DrawPlanets(graphics, DateTime.Parse(date), bitmap.Width, bitmap.Height);
+                // Draw the solar system
+                SolarSystem.DrawSun(graphics, bitmap.Width, bitmap.Height);
+                SolarSystem.DrawPlanets(graphics, DateTime.Parse(date), bitmap.Width, bitmap.Height);
 
-            // foreach (var asteroid in asteroids)
-            // {
-            //     var data = await GetAsteroidDetails(asteroid.Id);
-            //     var relativeLocation = AsteroidData.GetRelativeLocation(data);
-            //     double diameter = data.EstimatedDiameter?.Kilometers.Diameter ?? 0;
+                // foreach (var asteroid in asteroids)
+                // {
+                //     var data = await GetAsteroidDetails(asteroid.Id);
+                //     var relativeLocation = AsteroidData.GetRelativeLocation(data);
+                //     double diameter = data.EstimatedDiameter?.Kilometers.Diameter ?? 0;
 
-            //     // Draw the asteroid as a circle, relative to the center of the image
-            //     float x = 4000 + (float)relativeLocation.x * 100;
-            //     float y = 4000 + (float)relativeLocation.y * 100;
-            //     float radius = (float)diameter * 100;
-            //     Color color = relativeLocation.isDangerous ? Color.Red : Color.Blue;
-            //     System.Console.WriteLine($"Drawing asteroid {data.Name} at x={x}, y={y}, radius={radius}, color={color}");
+                //     // Draw the asteroid as a circle, relative to the center of the image
+                //     float x = 4000 + (float)relativeLocation.x * 100;
+                //     float y = 4000 + (float)relativeLocation.y * 100;
+                //     float radius = (float)diameter * 100;
+                //     Color color = relativeLocation.isDangerous ? Color.Red : Color.Blue;
+                //     System.Console.WriteLine($"Drawing asteroid {data.Name} at x={x}, y={y}, radius={radius}, color={color}");
 
-            //     // Get location of the orbiting body (e.g., Earth)
-            //     var orbPosition = SolarSystem.GetPlanetPosition(relativeLocation.orbitingBody, SolarSystem.DatetoJulianDate(DateTime.Parse(date)));
-            //     float orbX = Math.Clamp(4000 + (float)orbPosition.x, 0, 8000);
-            //     float orbY = Math.Clamp(4000 + (float)orbPosition.y, 0, 8000);
-            //     System.Console.WriteLine($"Orbiting body {relativeLocation.orbitingBody} at x={orbX}, y={orbY}");
+                //     // Get location of the orbiting body (e.g., Earth)
+                //     var orbPosition = SolarSystem.GetPlanetPosition(relativeLocation.orbitingBody, SolarSystem.DatetoJulianDate(DateTime.Parse(date)));
+                //     float orbX = Math.Clamp(4000 + (float)orbPosition.x, 0, 8000);
+                //     float orbY = Math.Clamp(4000 + (float)orbPosition.y, 0, 8000);
+                //     System.Console.WriteLine($"Orbiting body {relativeLocation.orbitingBody} at x={orbX}, y={orbY}");
 
-            //     // Draw orbiting body
-            //     graphics.FillEllipse(new SolidBrush(Color.Green), orbX - 5, orbY - 5, 1000, 1000);
+                //     // Draw orbiting body
+                //     graphics.FillEllipse(new SolidBrush(Color.Green), orbX - 5, orbY - 5, 1000, 1000);
 
-            //     graphics.FillEllipse(new SolidBrush(color), x + orbX - radius, y + orbY - radius, 2 * radius, 2 * radius);
+                //     graphics.FillEllipse(new SolidBrush(color), x + orbX - radius, y + orbY - radius, 2 * radius, 2 * radius);
 
-                
-            //     // Console.WriteLine($"Relative location of asteroid {data.Name}: x={relativeLocation.x}, y={relativeLocation.y}");
-            //     asteroidData.Add(data);
-            // }
 
-            graphics.FillEllipse(new SolidBrush(Color.Green), 400, 400, 10, 10);  // Earth at the center
+                //     // Console.WriteLine($"Relative location of asteroid {data.Name}: x={relativeLocation.x}, y={relativeLocation.y}");
+                //     asteroidData.Add(data);
+                // }
+            }
+
+            foreach (var planet in SolarSystem.Planets)
+            {
+                System.Console.WriteLine($"Planet: {planet.Key}, Position: {planet.Value}");
             }
 
             // Save the bitmap to a file
@@ -167,44 +170,44 @@ public class AsteroidData
                $"Semi-Major Axis: {OrbitalData?.SemiMajorAxis} AU, Eccentricity: {OrbitalData?.Eccentricity}, Inclination: {OrbitalData?.Inclination}°";
     }
 
-public static AsteroidRelativeLocation GetRelativeLocation(AsteroidData data)
-{
-    // Assuming data.OrbitalData contains the orbital elements
-    var orbitalData = data.OrbitalData;
-    if (orbitalData == null)
+    public static AsteroidRelativeLocation GetRelativeLocation(AsteroidData data)
     {
-        throw new ArgumentNullException(nameof(orbitalData), "Orbital data cannot be null.");
+        // Assuming data.OrbitalData contains the orbital elements
+        var orbitalData = data.OrbitalData;
+        if (orbitalData == null)
+        {
+            throw new ArgumentNullException(nameof(orbitalData), "Orbital data cannot be null.");
+        }
+
+        // Semi-major axis (in AU)
+        double semiMajorAxis = orbitalData.SemiMajorAxis;
+
+        // Eccentricity
+        double eccentricity = orbitalData.Eccentricity;
+
+        // True anomaly (set to a specific value for this example; you may want to calculate or pass it)
+        double trueAnomaly = Math.PI;  // For example, we're assuming the asteroid is at aphelion (farthest point).
+
+        // Orbital radius at this position using the correct formula
+        double orbitalRadius = (semiMajorAxis * (1 - Math.Pow(eccentricity, 2))) /
+                               (1 + eccentricity * Math.Cos(trueAnomaly));
+
+        // Calculate the x and y positions in the 2D plane
+        double x = orbitalRadius * Math.Cos(trueAnomaly);
+        double y = orbitalRadius * Math.Sin(trueAnomaly);
+
+        // Create the AsteroidRelativeLocation object
+        var relativeLocation = new AsteroidRelativeLocation
+        {
+            x = x,
+            y = y,
+            orbitingBody = "Earth", // Assuming the asteroid orbits Earth (change as necessary)
+            diameter = data.EstimatedDiameter?.Kilometers.Diameter ?? 0, // Assuming EstimatedDiameter is provided
+            isDangerous = data.EstimatedDiameter?.Kilometers.Diameter > 140 // Dangerous if diameter > 140 meters
+        };
+
+        return relativeLocation;
     }
-
-    // Semi-major axis (in AU)
-    double semiMajorAxis = orbitalData.SemiMajorAxis;
-
-    // Eccentricity
-    double eccentricity = orbitalData.Eccentricity;
-
-    // True anomaly (set to a specific value for this example; you may want to calculate or pass it)
-    double trueAnomaly = Math.PI;  // For example, we're assuming the asteroid is at aphelion (farthest point).
-
-    // Orbital radius at this position using the correct formula
-    double orbitalRadius = (semiMajorAxis * (1 - Math.Pow(eccentricity, 2))) /
-                           (1 + eccentricity * Math.Cos(trueAnomaly));
-
-    // Calculate the x and y positions in the 2D plane
-    double x = orbitalRadius * Math.Cos(trueAnomaly);
-    double y = orbitalRadius * Math.Sin(trueAnomaly);
-
-    // Create the AsteroidRelativeLocation object
-    var relativeLocation = new AsteroidRelativeLocation
-    {
-        x = x,
-        y = y,
-        orbitingBody = "Earth", // Assuming the asteroid orbits Earth (change as necessary)
-        diameter = data.EstimatedDiameter?.Kilometers.Diameter ?? 0, // Assuming EstimatedDiameter is provided
-        isDangerous = data.EstimatedDiameter?.Kilometers.Diameter > 140 // Dangerous if diameter > 140 meters
-    };
-
-    return relativeLocation;
-}
 
 
 }
@@ -289,8 +292,9 @@ public class MissDistance
 
 public class SolarSystem
 {
-    // Constants for each planet's orbital parameters (simplified for demonstration)
     private const double AU = 149597870.7; // Astronomical Unit in kilometers
+
+    public static Dictionary<string, (float, float)> Planets { get; set; } = [];
 
     public static double DatetoJulianDate(DateTime date)
     {
@@ -315,14 +319,14 @@ public class SolarSystem
     {
         switch (planetName.ToLower())
         {
-            case "mercury": return GetPlanetPosition(julianDate, 0.387, 0.205, 88, 7.0, 48.3, 29.1);
-            case "venus": return GetPlanetPosition(julianDate, 0.723, 0.0067, 224.7, 3.4, 76.7, 54.9);
-            case "earth": return GetPlanetPosition(julianDate, 1.0, 0.0167, 365.25, 0.0, -11.3, 114.2);
-            case "mars": return GetPlanetPosition(julianDate, 1.524, 0.0934, 687, 1.85, 49.6, 286.5);
-            case "jupiter": return GetPlanetPosition(julianDate, 5.203, 0.0489, 4331, 1.3, 100.5, 275.1);
-            case "saturn": return GetPlanetPosition(julianDate, 9.537, 0.0565, 10747, 2.5, 113.7, 336.0);
-            case "uranus": return GetPlanetPosition(julianDate, 19.191, 0.0463, 30589, 0.77, 74.0, 96.8);
-            case "neptune": return GetPlanetPosition(julianDate, 30.068, 0.0097, 59800, 1.77, 131.8, 265.6);
+            case "mercury": return GetPlanetPosition(julianDate, 0.387, 0.21, 88, 7, 48.331, 29.124);
+            case "venus": return GetPlanetPosition(julianDate, 0.723, 0.007, 224.701, 3.394, 76.680, 54.884);
+            case "earth": return GetPlanetPosition(julianDate, 1.000, 0.017, 365.256, 0.000, -11.260, 114.207);
+            case "mars": return GetPlanetPosition(julianDate, 1.524, 0.093, 686.980, 1.850, 49.558, 286.537);
+            case "jupiter": return GetPlanetPosition(julianDate, 5.203, 0.049, 4332.589, 1.303, 100.464, 273.867);
+            case "saturn": return GetPlanetPosition(julianDate, 9.537, 0.056, 10759.22, 2.485, 113.665, 339.392);
+            case "uranus": return GetPlanetPosition(julianDate, 19.191, 0.047, 30685.4, 0.773, 74.006, 96.998);
+            case "neptune": return GetPlanetPosition(julianDate, 30.068, 0.010, 60190.03, 1.770, 131.784, 265.646);
             default: throw new ArgumentException("Invalid planet name");
         }
     }
@@ -332,13 +336,10 @@ public class SolarSystem
         double orbitalPeriod, double inclination, double longAscNode,
         double argPerihelion)
     {
-        // Calculate mean anomaly
         double meanAnomaly = CalculateMeanAnomaly(julianDate, orbitalPeriod);
 
-        // Estimate eccentric anomaly using iterative approximation (Newton-Raphson)
         double eccentricAnomaly = CalculateEccentricAnomaly(meanAnomaly, eccentricity);
 
-        // Calculate the true anomaly
         double trueAnomaly = 2 * Math.Atan2(
             Math.Sqrt(1 + eccentricity) * Math.Sin(eccentricAnomaly / 2),
             Math.Sqrt(1 - eccentricity) * Math.Cos(eccentricAnomaly / 2)
@@ -351,7 +352,7 @@ public class SolarSystem
         double xOrbital = distance * Math.Cos(trueAnomaly);
         double yOrbital = distance * Math.Sin(trueAnomaly);
 
-        // Adjust for inclination and orbital orientation
+        // Adjust for inclination and orbital orientation (Yes, this is an equation made by chatgpt)
         double xEcliptic = (xOrbital * (Math.Cos(argPerihelion * Math.PI / 180) * Math.Cos(longAscNode * Math.PI / 180) -
                             Math.Sin(argPerihelion * Math.PI / 180) * Math.Sin(longAscNode * Math.PI / 180) * Math.Cos(inclination * Math.PI / 180))) -
                            (yOrbital * (Math.Sin(argPerihelion * Math.PI / 180) * Math.Cos(longAscNode * Math.PI / 180) +
@@ -385,12 +386,14 @@ public class SolarSystem
         return E;
     }
 
-    public static float Scale = 10f;
+    public static float Scale = 1000f;
+    public static float PlanetScale = 10;
+    public static float SunScale = Scale;
 
     public static void DrawSun(Graphics graphics, int width, int height)
     {
-        var size = GetPlanetSizeByPlanet("Sun") * Scale / 20;
-        graphics.FillEllipse(new SolidBrush(Color.Yellow), width/2 - size/2, height/2 - size/2, size, size); // 20x20 px sun
+        var size = GetPlanetSizeByPlanet("Sun") * SunScale;
+        graphics.FillEllipse(new SolidBrush(Color.Yellow), width / 2 - size / 2, height / 2 - size / 2, size, size); // 20x20 px sun
     }
 
     public static void DrawPlanets(Graphics graphics, DateTime date, int bitmapWidth, int bitmapHeight)
@@ -398,9 +401,8 @@ public class SolarSystem
         // Centralize planets in the bitmap (400, 400 for 800x800)
         float centerX = bitmapWidth / 2f;
         float centerY = bitmapHeight / 2f;
-        
-        // Set a scaling factor so that Neptune's orbit (about 30 AU from the Sun) fits within the bitmap
-        double maxDistanceAU = 30; // Neptune's max distance ~30 AU
+
+        double maxDistanceAU = 30;
         double scaleFactor = (bitmapWidth / 2f) / (maxDistanceAU * SolarSystem.AU); // Scale AU to pixels
 
         foreach (var planet in new string[] { "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" })
@@ -414,8 +416,37 @@ public class SolarSystem
             float x = centerX + (float)(position.x * scaleFactor);
             float y = centerY + (float)(position.y * scaleFactor);
 
+            float finalX = x - size / 2;
+            System.Console.WriteLine($"Final X: {finalX}");
+            float finalY = y - size / 2;
+            System.Console.WriteLine($"Final Y: {finalY}");
+
+            // Equation for the line (Sun at centerX, centerY, planet at finalX, finalY)
+            float deltaX = finalX - centerX;
+            float deltaY = finalY - centerY;
+
+            // Current distance from the Sun
+            float currentDistance = (float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            // New distance, extended 1.5 times
+            float newDistance = currentDistance * 10f;
+
+            // Calculate the scaling factor to extend the line
+            float scale = newDistance / currentDistance;
+
+            // Calculate new coordinates
+            float multiplier = GetPlanetDistanceMultiplier(planet);
+            float newX = centerX + deltaX * scale * multiplier;
+            float newY = centerY + deltaY * scale * multiplier;
+
+            using (var pen = new Pen(color, 1))
+            {
+                graphics.DrawLine(pen, centerX, centerY, newX, newY);
+            }
+
             // Draw planet
-            graphics.FillEllipse(new SolidBrush(color), x - size/2, y - size/2, size, size); // 10x10 px planet size
+            graphics.FillEllipse(new SolidBrush(color), newX, newY, size, size);
+            Planets[planet] = (newX, newY);
         }
     }
 
@@ -428,7 +459,7 @@ public class SolarSystem
             case "earth": return Color.Blue;
             case "mars": return Color.Red;
             case "jupiter": return Color.Orange;
-            case "saturn": return Color.Yellow;
+            case "saturn": return Color.Gold;
             case "uranus": return Color.LightBlue;
             case "neptune": return Color.Blue;
             default: return Color.White;
@@ -439,15 +470,33 @@ public class SolarSystem
     {
         switch (planet.ToLower())
         {
-            case "mercury": return 0.38f;
-            case "venus": return 0.95f;
-            case "earth": return 1.0f;
-            case "mars": return 0.53f;
-            case "jupiter": return 11.2f;
-            case "saturn": return 9.45f;
-            case "uranus": return 4.01f;
-            case "neptune": return 3.88f;
-            case "sun": return 109.0f;
+            case "mercury": return 0.0035f * PlanetScale;
+            case "venus": return 0.0087f * PlanetScale;
+            case "earth": return 0.0092f * PlanetScale;
+            case "mars": return 0.0049f * PlanetScale;
+            case "jupiter": return 0.1005f * PlanetScale / 5;
+            case "saturn": return 0.00637f * PlanetScale;
+            case "uranus": return 0.00865f * PlanetScale;
+            case "neptune": return 0.00854f * PlanetScale;
+            case "sun": return 1.0f;
+            default: return 1.0f;
+        }
+    }
+
+    public static float GetPlanetDistanceMultiplier(string planet)
+    {
+        // I am aware that this is not the correct distance multiplier, but it is just for demonstration purposes 
+        // - Daniel
+        switch (planet.ToLower())
+        {
+            case "mercury": return 1f;
+            case "venus": return 2.5f;
+            case "earth": return 1f;
+            case "mars": return 1f;
+            case "jupiter": return 1f;
+            case "saturn": return 1f;
+            case "uranus": return 1f;
+            case "neptune": return 1f;
             default: return 1.0f;
         }
     }
