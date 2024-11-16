@@ -1,25 +1,38 @@
-﻿namespace nasa_asteroid_visualizer
+﻿using Microsoft.Maui.Controls;
+using System;
+
+namespace nasa_asteroid_visualizer
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
+
+
+            SolarSystemView.Drawable = SolarSystemDrawable.Instance;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void OnPanUpdated(object sender, PanUpdatedEventArgs e)
         {
-            count++;
+            if (e.StatusType == GestureStatus.Running)
+            {
+                float deltaX = (float)-e.TotalX / 10; 
+                float deltaY = (float)-e.TotalY / 10;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+                SolarSystemDrawable.Instance.MoveFocus(deltaX, deltaY);
+                SolarSystemView.Invalidate();  // This initiates the redraw
+            }
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
+        {
+            if (e.Status == GestureStatus.Running)
+            {
+                float newScale = (float)e.Scale;
+                SolarSystemDrawable.Instance.ChangeZoom(newScale);
+                SolarSystemView.Invalidate();  // This initiates the redraw
+            }
         }
     }
-
 }

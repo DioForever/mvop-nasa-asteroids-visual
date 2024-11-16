@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|c:\\users\\vasko\\visualcode\\mvop\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\solarsystemdrawable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|solutionrelative:solarsystemdrawable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|c:\\users\\vasko\\visualcode\\mvop\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\solarsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|solutionrelative:solarsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|c:\\users\\vasko\\visualcode\\mvop\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|solutionrelative:mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|c:\\users\\vasko\\visualcode\\mvop\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|solutionrelative:mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|c:\\users\\vasko\\visualcode\\mvop\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A5B3C7C3-6F53-47C3-B509-3C67AAB47A29}|nasa asteroid visualizer.csproj|solutionrelative:mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +43,71 @@
             {
               "$type": "Bookmark",
               "Name": "ST:323948898:0:{81164725-9a96-4ece-a4cb-440d8fd285e5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SolarSystem.cs",
+              "DocumentMoniker": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\SolarSystem.cs",
+              "RelativeDocumentMoniker": "SolarSystem.cs",
+              "ToolTip": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\SolarSystem.cs",
+              "RelativeToolTip": "SolarSystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-16T12:16:49.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SolarSystemDrawable.cs",
+              "DocumentMoniker": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\SolarSystemDrawable.cs",
+              "RelativeDocumentMoniker": "SolarSystemDrawable.cs",
+              "ToolTip": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\SolarSystemDrawable.cs",
+              "RelativeToolTip": "SolarSystemDrawable.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAiwEsAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-16T10:58:45.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\MainPage.xaml.cs",
+              "RelativeToolTip": "MainPage.xaml.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T19:08:56.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\MainPage.xaml",
+              "RelativeDocumentMoniker": "MainPage.xaml",
+              "ToolTip": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\MainPage.xaml",
+              "RelativeToolTip": "MainPage.xaml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-11-15T19:07:39.849Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiProgram.cs",
+              "ToolTip": "C:\\Users\\vasko\\VisualCode\\MVOP\\mvop-nasa-asteroids-visual\\nasa asteroid visualizer\\MauiProgram.cs",
+              "RelativeToolTip": "MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T11:44:36.526Z",
+              "EditorCaption": ""
             }
           ]
         }
