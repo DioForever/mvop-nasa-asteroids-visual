@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using Microsoft.Maui.Graphics;
+using nasa_asteroid_visualizer;
+using static nasa_asteroid_visualizer.ApiClasses;
+using static nasa_asteroid_visualizer.SolarSystemDrawable;
 
 public class SolarSystem
 {
@@ -13,8 +17,6 @@ public class SolarSystem
         public double LongitudeOfAscendingNode; // in degrees
         public double ArgumentOfPeriapsis; // in degrees
         public double MeanLongitudeAtEpoch; // in degrees
-
-        // Add these properties:
         public double OrbitalPeriod; // in days
         public double MeanAnomalyAtEpoch; // in degrees
     }
@@ -241,8 +243,85 @@ public class SolarSystem
             yFinal = intersections[0].y;
         }
 
-        System.Console.WriteLine($"{planet.Name} position on {date:yyyy-MM-dd}: X={xFinal}, Y={yFinal}");
 
         return (xFinal, yFinal);
+    }
+
+    public static async Task<(double x, double y, string orbitingBody)> CalculateAsteroidRelativePosition(
+    Asteroid asteroid, DateTime targetDate, double scaledAU)
+    {
+        // Find the closest approach data for the specified date
+        var approachData = asteroid.CloseApproachData
+            .FirstOrDefault(data => DateTime.Parse(data.CloseApproachDate) == targetDate);
+
+        if (approachData == null)
+        {
+            if(asteroid.CloseApproachData.Count == 0)
+            {
+                SolarSystemDrawable.Instance.Alert("No close approach data available for the target date.", "API Error");
+                return (0, 0, "");
+            }
+            approachData = asteroid.CloseApproachData[0];
+        }
+
+        // Retrieve additional orbital data
+        var result = await DataFetcher.GetAdditionalAsteroidData(asteroid.Id);
+        if (!result.success)
+        {
+            SolarSystemDrawable.Instance.Alert(result.errorText, result.errorTitle);
+            throw new InvalidOperationException($"Failed to retrieve additional data for asteroid {asteroid.Name}: {result.errorText}");
+        }
+        var orbitalData = result.asteroid.OrbitalData;
+
+        // Days since J2000
+        double daysSinceJ2000 = (targetDate - new DateTime(2000, 1, 1, 12, 0, 0)).TotalDays;
+
+        // Mean anomaly (M = M0 + n * t)
+        double meanMotion = 360.0 / double.Parse(orbitalData.OrbitalPeriod, CultureInfo.InvariantCulture); // degrees per day
+        double meanAnomaly = double.Parse(orbitalData.MeanAnomaly, CultureInfo.InvariantCulture) + meanMotion * daysSinceJ2000;
+        meanAnomaly = meanAnomaly % 360; // Normalize to 0-360 degrees
+        meanAnomaly = meanAnomaly * Math.PI / 180; // Convert to radians
+
+        // Solve Kepler's equation for Eccentric Anomaly using a first-order approximation
+        double eccentricity = double.Parse(orbitalData.Eccentricity, CultureInfo.InvariantCulture);
+        double eccentricAnomaly = meanAnomaly + eccentricity * Math.Sin(meanAnomaly);
+
+        // True anomaly (θ)
+        double trueAnomaly = 2 * Math.Atan2(
+            Math.Sqrt(1 + eccentricity) * Math.Sin(eccentricAnomaly / 2),
+            Math.Sqrt(1 - eccentricity) * Math.Cos(eccentricAnomaly / 2)
+        );
+
+        // Distance from the orbiting body (r)
+        double semiMajorAxis = double.Parse(orbitalData.SemiMajorAxis, CultureInfo.InvariantCulture); // AU
+        double r = semiMajorAxis * (1 - eccentricity * Math.Cos(eccentricAnomaly));
+
+        // Position in orbital plane
+        double xOrbital = r * Math.Cos(trueAnomaly);
+        double yOrbital = r * Math.Sin(trueAnomaly);
+
+        // Transform to ecliptic coordinates
+        double argPeriRad = double.Parse(orbitalData.PerihelionArgument, CultureInfo.InvariantCulture) * Math.PI / 180;
+        double inclinationRad = double.Parse(orbitalData.Inclination, CultureInfo.InvariantCulture) * Math.PI / 180;
+        double longitudeOfAscendingNodeRad = double.Parse(orbitalData.AscendingNodeLongitude, CultureInfo.InvariantCulture) * Math.PI / 180;
+
+        // Apply argument of periapsis
+        double x1 = xOrbital * Math.Cos(argPeriRad) - yOrbital * Math.Sin(argPeriRad);
+        double y1 = xOrbital * Math.Sin(argPeriRad) + yOrbital * Math.Cos(argPeriRad);
+
+        // Apply inclination
+        double z1 = y1 * Math.Sin(inclinationRad);
+        y1 = y1 * Math.Cos(inclinationRad);
+
+        // Apply longitude of ascending node
+        double xFinal = x1 * Math.Cos(longitudeOfAscendingNodeRad) - y1 * Math.Sin(longitudeOfAscendingNodeRad);
+        double yFinal = x1 * Math.Sin(longitudeOfAscendingNodeRad) + y1 * Math.Cos(longitudeOfAscendingNodeRad);
+        double zFinal = z1;
+
+        // Scale position for display
+        double asteroidX = (xFinal);
+        double asteroidY = (yFinal);
+
+        return (asteroidX, asteroidY, approachData.OrbitingBody);
     }
 }

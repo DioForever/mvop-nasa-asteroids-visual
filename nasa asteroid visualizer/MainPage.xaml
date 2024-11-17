@@ -21,12 +21,13 @@
                     PlaceholderColor="Gray"
                     TextColor="White"
                     BackgroundColor="Black"
-                    WidthRequest="200" />
+                    WidthRequest="180"/>
                 <Button
                     Text="SAVE"
                     WidthRequest="80"
                     BackgroundColor="Gray"
-                    TextColor="White" />
+                    TextColor="White"
+                    Clicked="ApiKeySaveClicked"/>
             </HorizontalStackLayout>
 
             <!-- Filters Section -->
@@ -52,19 +53,33 @@
             </HorizontalStackLayout>
 
             <!-- Hazardous Asteroids Checkbox -->
-            <CheckBox
-                x:Name="HazardousOnlyCheckBox"
-                Color="White" />
+            <HorizontalStackLayout>
+                <CheckBox
+                    x:Name="HazardousOnlyCheckBox"
+                    Color="White"
+                    CheckedChanged="HazardousCheckChanged"/>
+                <Label
+                    Text="Display Hazardous only"
+                    FontSize="Small"
+                    VerticalOptions="Center"
+                    TextColor="White" />
+            </HorizontalStackLayout>
 
             <!-- Minimal Size Entry -->
             <HorizontalStackLayout>
                 <Entry
                     x:Name="MinSizeEntry"
-                    Placeholder="Minimal size in m3"
+                    Placeholder="Entry km3"
                     PlaceholderColor="Gray"
                     TextColor="White"
                     BackgroundColor="Black"
-                    Keyboard="Numeric" />
+                    Keyboard="Numeric"
+                    TextChanged="OnNumericEntryTextChanged" />
+                <Label
+                    Text="Minimal size in km3"
+                    FontSize="Small"
+                    VerticalOptions="Center"
+                    TextColor="White" />
             </HorizontalStackLayout>
 
             <!-- Display Button -->
@@ -72,7 +87,8 @@
                 Text="CLICK TO DISPLAY"
                 BackgroundColor="Gray"
                 TextColor="White"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" 
+                Clicked="LoadAsteroids"/>
 
 
             <Frame BorderColor="White" Padding="0" Margin="10">
