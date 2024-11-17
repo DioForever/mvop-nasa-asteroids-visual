@@ -14,7 +14,6 @@ class AsteroidVisualization
 {
     // API Base URL
     private const string NasaApiUrl = "https://api.nasa.gov/neo/rest/v1/feed";
-    private const string ApiKey = "dhnOj4fBIIAejzFf82vnwiMSeL88HJUolrZMXBr9";
 
     static async Task Main(string[] args)
     {

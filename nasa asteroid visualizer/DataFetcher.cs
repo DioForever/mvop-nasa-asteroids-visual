@@ -65,6 +65,7 @@ namespace nasa_asteroid_visualizer
             {
                 result.errorTitle = "Error fetching data";
                 result.errorText = response.ReasonPhrase;
+                result.success = false;
                 return result;
             }
 
@@ -103,6 +104,11 @@ namespace nasa_asteroid_visualizer
             try
             {
                 response = await client.GetAsync(GetAsteroidAddress(id));
+                if(response.ReasonPhrase == "Too many requests.")
+                {
+                    await Task.Delay(1000);
+                    response = await client.GetAsync(GetAsteroidAddress(id));
+                }
             }
             catch (Exception e)
             {
@@ -122,8 +128,9 @@ namespace nasa_asteroid_visualizer
             }
 
 
-            if (!result.success)
+            if (!response.IsSuccessStatusCode)
             {
+                result.success = false;
                 result.errorTitle = "Error fetching data";
                 result.errorText = response.ReasonPhrase ?? "-*-*-*-*-";
                 return result;

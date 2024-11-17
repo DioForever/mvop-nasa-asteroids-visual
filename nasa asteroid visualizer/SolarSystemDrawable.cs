@@ -79,7 +79,7 @@ namespace nasa_asteroid_visualizer
             }
 
             canvas.FillColor = Colors.Yellow;
-            float sunRadius = 5 * zoom;
+            float sunRadius = 10 * zoom;
             canvas.FillCircle(centerX + offsetX * zoom, centerY + offsetY * zoom, sunRadius);
             SolarSystemView?.Invalidate();
 
@@ -144,7 +144,7 @@ namespace nasa_asteroid_visualizer
         {
             asteroidsToDraw = [];
             int limit = asteroidLimit;
-
+            if (asteroidsData == null) return;
             foreach (var asteroid in asteroidsData.NearEarthObjects)
             {
                 foreach (var asteroidData in asteroid.Value)
@@ -153,14 +153,13 @@ namespace nasa_asteroid_visualizer
                     if(limit < 0) return;
 
                     var asteroidProperties = await CalculateAsteroidRelativePosition(asteroidData, date, scaledAU);
+                    if (asteroidProperties.orbitingBody == "") continue; // Some error happened and we want to skip it
+
                     var estimatedSize =
                         (asteroidData.EstimatedDiameter.Kilometers.EstimatedDiameterMax
                         + asteroidData.EstimatedDiameter.Kilometers.EstimatedDiameterMin) / 2;
                     var size = estimatedSize;
                     var name = asteroidData.Name;
-
-                    if (asteroidProperties.orbitingBody == "") continue; // Some error happened and we want to skip it
-
                     // Find the closest approach data for the specified date
                     if (asteroidData.CloseApproachData.Count == 0)
                         throw new InvalidOperationException("No close approach data available for the target date.");
@@ -240,6 +239,9 @@ namespace nasa_asteroid_visualizer
         public void DrawAsteroids(ICanvas canvas, float centerX, float centerY)
         {
             int limit = asteroidLimit;
+            if (Instance == null) return;
+            if (Instance.asteroidsToDraw == null) return;
+
             foreach (AsteroidProperties asteroid in Instance.asteroidsToDraw)
             {
                 if (asteroid.size * AUtoKm < Km3Min) continue;

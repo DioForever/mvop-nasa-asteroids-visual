@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("nasa asteroid visualizer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+27d8a33a99f368b0fe96c76d9813617a757e417f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+524052b854c093a0af6dd9083ddba66dac2c09cc")]
 [assembly: System.Reflection.AssemblyProductAttribute("nasa asteroid visualizer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("nasa asteroid visualizer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

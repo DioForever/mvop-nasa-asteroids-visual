@@ -54,6 +54,9 @@ namespace nasa_asteroid_visualizer
 
         private async void LoadAsteroids(object sender, EventArgs e)
         {
+            DisplayBtn.IsEnabled = false;
+            var originalText = DisplayBtn.Text;
+            DisplayBtn.Text = "IN PROGRESS...";
             DateTime date = DatePicker.Date;
             SolarSystemDrawable.Instance.SetDate(date);
             var result = await DataFetcher.GetAsteroids(date);
@@ -65,6 +68,10 @@ namespace nasa_asteroid_visualizer
             var astData = result.asteroidsData;
 
             SolarSystemDrawable.Instance.CalculateAsteroids(astData, date);
+
+            DisplayBtn.Text = originalText;
+            DisplayBtn.IsEnabled = true;
+
         }
 
         private void HazardousCheckChanged(object sender, CheckedChangedEventArgs e)

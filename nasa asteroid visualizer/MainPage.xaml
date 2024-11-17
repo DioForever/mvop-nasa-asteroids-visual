@@ -84,6 +84,7 @@
 
             <!-- Display Button -->
             <Button
+                x:Name="DisplayBtn"
                 Text="CLICK TO DISPLAY"
                 BackgroundColor="Gray"
                 TextColor="White"
